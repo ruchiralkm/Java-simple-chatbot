@@ -3,23 +3,13 @@ import java.io.File;
 
 public class bot {
 
-    HashMap<String, String> knowledge;
-
     public bot() {
-        knowledge = new HashMap<>();
-        knowledge.put("good morning", "good morning!");
-        knowledge.put("good evening", "good evening!");
-        knowledge.put("need advice", "please ask!");
-        knowledge.put("follow a course", "ok...go on..");
-        knowledge.put("thank you", "you are welcome dear");
+
     }
 
     public boolean answer(String question) {
         String lowerQuestion = question.toLowerCase();
-        if (knowledge.containsKey(lowerQuestion)) {
-            System.out.println("Bot: " + knowledge.get(lowerQuestion));
-            return true;
-        } else if (lowerQuestion.contains("how are you")) {
+        if (lowerQuestion.contains("how are you")) {
             String[] responses = {"I'm fine", "I am ok", "Not bad dear", "good", "Alright"};
             System.out.println("Bot: " + responses[new Random().nextInt(responses.length)]);
             return true;
@@ -33,6 +23,9 @@ public class bot {
         } else if (lowerQuestion.contains("branches")) {
             showDataFromFile("branches.txt");
             return true;
+        } else if (lowerQuestion.contains("bye")) {
+            System.out.println("Bot: Good Bye ");
+            return false;
         }
         return false;
     }
